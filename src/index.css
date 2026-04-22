@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=Roboto:wght@700;900&family=Open+Sans:wght@400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-roboto: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --font-opensans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: #276c00;
+  --color-primary-container: #67ff04;
+  --color-on-primary-container: #2a7100;
+  --color-secondary: #00677f;
+  --color-secondary-container: #45d3fd;
+  --color-background: #fcf9f8;
+  --color-surface: #fcf9f8;
+  --color-on-surface: #1c1b1b;
+  --color-surface-container: #f0eded;
+  --color-surface-container-low: #f6f3f2;
+  --color-surface-container-high: #eae7e7;
+  --color-surface-container-lowest: #ffffff;
+  --color-inverse-surface: #313030;
+  --color-tertiary: #5f5e5e;
+  --color-on-primary-fixed: #072100;
+  --color-primary-fixed: #7eff3f;
+  --color-outline-variant: #bccbaf;
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+}
