@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { 
   Leaf, 
   Sun, 
@@ -14,8 +14,7 @@ import {
   PenTool, 
   Hammer, 
   CheckCircle, 
-  Star, 
-  X,
+  Star,
   Mail,
   Phone,
   MapPin,
@@ -27,8 +26,11 @@ const FORMSUBMIT_EMAIL = 'ecobalancecity@gmail.com';
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
 export default function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [formStatus, setFormStatus] = useState<FormStatus>('idle');
+
+  const scrollToForm = () => {
+    document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -111,8 +113,8 @@ export default function App() {
             className="flex flex-col items-center gap-6"
           >
             <button 
-              onClick={() => setIsModalOpen(true)}
-              className="bg-[#67FF04] hover:bg-[#67FF04]/90 text-[#313131] font-black text-lg px-10 py-5 rounded-full transition-all scale-100 hover:scale-105 active:scale-95 shadow-xl"
+              onClick={scrollToForm}
+              className="bg-[#67FF04] hover:bg-[#67FF04]/90 text-[#313131] font-black text-lg px-10 py-5 transition-all scale-100 hover:scale-105 active:scale-95 shadow-xl"
             >
               REQUEST A FREE CONSULTATION
             </button>
@@ -159,7 +161,7 @@ export default function App() {
           
           <div className="flex justify-center">
             <button 
-              onClick={() => setIsModalOpen(true)}
+              onClick={scrollToForm}
               className="text-primary font-black flex items-center gap-2 group transition-all hover:gap-4 border-b-2 border-secondary-container pb-1"
             >
               DISCUSS YOUR SPACE WITH AN EXPERT
@@ -178,17 +180,13 @@ export default function App() {
           <h2 className="text-3xl font-headline font-black mb-12">Trusted by Malaysia's Industry Leaders</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center">
             {[
-              { name: "Shopee", url: "https://borneohalfmarathon.com/wp-content/uploads/2026/04/Shopee-Logo-2015-768x502-1.png", h: 10 },
-              { name: "FINAS", url: "https://borneohalfmarathon.com/wp-content/uploads/2026/04/FINAS_Malaysia.jpeg", h: 16 },
-              { name: "WORQ", url: "https://borneohalfmarathon.com/wp-content/uploads/2026/04/Screenshot-2026-04-14-233509.png", h: 8 },
-              { name: "Velesto", url: "https://borneohalfmarathon.com/wp-content/uploads/2026/04/velesto_energy_berhad_logo.jpg", h: 12 },
-              { name: "Allianz", url: "https://borneohalfmarathon.com/wp-content/uploads/2026/04/ALLIANZ.webp", h: 10 },
-              { name: "Pharmaserv", url: "https://borneohalfmarathon.com/wp-content/uploads/2026/04/PHARMASERV.webp", h: 10 },
-              { name: "Toyota", url: "https://borneohalfmarathon.com/wp-content/uploads/2026/04/PCM_TOYOTA.webp", h: 10 },
-              { name: "Amway", url: "https://borneohalfmarathon.com/wp-content/uploads/2026/04/AMWAY.webp", h: 10 },
+              { name: "Allianz", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Allianz.svg" },
+              { name: "JLN", url: "https://www.jln.gov.my/jln/resources/JLN%20New%20Design%20Layout/Header/LogoJLN%5BFull_Size%5D.png" },
+              { name: "KLIA", url: "https://upload.wikimedia.org/wikipedia/en/b/b2/Malaysia_Airports_Logo.svg" },
+              { name: "Decathlon", url: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Decathlon_-_logo_%28France%2C_2024%29.svg" },
             ].map((client) => (
-              <div key={client.name} className="bg-white/50 p-8 rounded-lg grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100 border border-transparent hover:border-outline-variant/20 flex items-center justify-center min-h-[120px]">
-                <img src={client.url} alt={`${client.name} Logo`} className={`h-${client.h} w-auto mx-auto object-contain`} />
+              <div key={client.name} className="bg-white/50 p-6 rounded-lg grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100 border border-transparent hover:border-outline-variant/20 flex items-center justify-center h-[120px]">
+                <img src={client.url} alt={`${client.name} Logo`} className="max-h-12 max-w-[140px] w-auto h-auto object-contain" />
               </div>
             ))}
           </div>
@@ -215,8 +213,8 @@ export default function App() {
               Elevate your brand identity and welcome clients with a striking, maintenance-free reception backdrop. Our corporate installations are professionally fitted, always on-brand, and completely hassle-free.
             </p>
             <button 
-              onClick={() => setIsModalOpen(true)}
-              className="bg-[#67FF04] text-[#313131] w-fit px-10 py-5 rounded-full font-black text-sm tracking-wider shadow-lg hover:shadow-xl transition-all uppercase"
+              onClick={scrollToForm}
+              className="bg-[#67FF04] text-[#313131] w-fit px-10 py-5 font-black text-sm tracking-wider shadow-lg hover:shadow-xl transition-all uppercase"
             >
               REQUEST A FREE CONSULTATION
             </button>
@@ -241,8 +239,8 @@ export default function App() {
               Create an Instagram-worthy aesthetic for your café, showroom, or boutique without worrying about plant upkeep. A bespoke artificial wall is one of the highest-ROI interior investments for retail and F&B spaces.
             </p>
             <button 
-              onClick={() => setIsModalOpen(true)}
-              className="bg-[#67FF04] text-[#313131] w-fit px-10 py-5 rounded-full font-black text-sm tracking-wider shadow-lg hover:shadow-xl transition-all uppercase"
+              onClick={scrollToForm}
+              className="bg-[#67FF04] text-[#313131] w-fit px-10 py-5 font-black text-sm tracking-wider shadow-lg hover:shadow-xl transition-all uppercase"
             >
               REQUEST A FREE CONSULTATION
             </button>
@@ -253,8 +251,8 @@ export default function App() {
         <div className="bg-inverse-surface py-12 px-6 flex flex-col md:flex-row items-center justify-center gap-8 text-center md:text-left">
           <h4 className="text-white text-2xl font-headline font-bold">Ready to redefine your environment?</h4>
           <button 
-            onClick={() => setIsModalOpen(true)}
-            className="bg-primary-container text-on-primary-fixed px-12 py-5 rounded-full font-black text-lg hover:scale-105 transition-transform"
+            onClick={scrollToForm}
+            className="bg-primary-container text-on-primary-fixed px-12 py-5 font-black text-lg hover:scale-105 transition-transform"
           >
             UPGRADE YOUR SPACE TODAY
           </button>
@@ -364,8 +362,8 @@ export default function App() {
           
           <div className="mt-20 text-center">
             <button 
-              onClick={() => setIsModalOpen(true)}
-              className="bg-[#67FF04] text-[#313131] px-[38px] py-[16px] rounded-[4px] font-bold uppercase text-sm tracking-widest transition-all hover:shadow-[0_0_20px_rgba(103,255,4,0.4)] hover:-translate-y-0.5"
+              onClick={scrollToForm}
+              className="bg-[#67FF04] text-[#313131] px-[38px] py-[16px] font-bold uppercase text-sm tracking-widest transition-all hover:shadow-[0_0_20px_rgba(103,255,4,0.4)] hover:-translate-y-0.5"
             >
               SCHEDULE YOUR SITE ASSESSMENT
             </button>
@@ -389,17 +387,12 @@ export default function App() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="max-w-2xl mx-auto mb-16">
             {[
               {
                 text: "You have shown professionalism, initiative, and magic green fingers! Everyone who sees the plants feels the need to touch them to see if it's real, as they look so healthy and perfect.",
                 author: "Theresa Arthur",
                 role: "Group Account Director, M&C Saatchi KL"
-              },
-              {
-                text: "The installation was seamless and the team was incredibly professional throughout. Our clients comment on the wall every single time they visit our office.",
-                author: "Corporate Client",
-                role: "Klang Valley, Malaysia"
               }
             ].map((review, idx) => (
               <div key={idx} className="bg-white p-10 rounded-[8px] border border-[#e8e8e8] border-l-[4px] border-l-[#67FF04] shadow-sm relative transition-all hover:shadow-md">
@@ -417,8 +410,8 @@ export default function App() {
           
           <div className="text-center">
             <button 
-              onClick={() => setIsModalOpen(true)}
-              className="bg-[#67FF04] text-[#313131] px-10 py-5 rounded-full font-bold text-sm tracking-wider shadow-lg hover:shadow-xl transition-all uppercase"
+              onClick={scrollToForm}
+              className="bg-[#67FF04] text-[#313131] px-10 py-5 font-bold text-sm tracking-wider shadow-lg hover:shadow-xl transition-all uppercase"
             >
               REQUEST A FREE CONSULTATION
             </button>
@@ -427,7 +420,7 @@ export default function App() {
       </section>
 
       {/* FOOTER FORM */}
-      <footer className="bg-[#313131] border-t-2 border-[#67FF04] pt-24 pb-0 overflow-hidden">
+      <footer id="contact-form" className="bg-[#313131] border-t-2 border-[#67FF04] pt-24 pb-0 overflow-hidden scroll-mt-4">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 flex flex-col items-center">
             <div className="bg-white/15 text-white px-6 py-2 rounded-[20px] text-xs font-bold uppercase tracking-[0.18em] w-fit mb-4">
@@ -506,7 +499,7 @@ export default function App() {
                     <button
                       type="submit"
                       disabled={formStatus === 'submitting'}
-                      className="w-full bg-[#67FF04] text-[#313131] py-4 rounded-[4px] font-roboto font-[900] uppercase tracking-wider text-base transition-all hover:shadow-[0_0_20px_rgba(103,255,4,0.4)] shadow-lg disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:shadow-lg"
+                      className="w-full bg-[#67FF04] text-[#313131] py-4 font-roboto font-[900] uppercase tracking-wider text-base transition-all hover:shadow-[0_0_20px_rgba(103,255,4,0.4)] shadow-lg disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:shadow-lg"
                     >
                       {formStatus === 'submitting' ? 'SENDING…' : 'REQUEST QUOTE VIA EMAIL'}
                     </button>
@@ -549,56 +542,6 @@ export default function App() {
           </div>
         </div>
       </footer>
-
-      {/* POPUP MODAL */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-zinc-950/90 backdrop-blur-md"
-          >
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="bg-inverse-surface max-w-2xl w-full rounded-2xl overflow-hidden shadow-2xl"
-            >
-              <div className="p-8 border-b border-white/5 flex justify-between items-center">
-                <div className="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase">
-                  Consultation Form
-                </div>
-                <button 
-                  onClick={() => setIsModalOpen(false)}
-                  className="text-white/50 hover:text-white transition-colors"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-              <div className="p-10">
-                <h3 className="text-3xl font-headline font-black text-white mb-8">Let's Green Your Space</h3>
-                <div className="grid grid-cols-1 gap-6">
-                  <div className="flex flex-col gap-2">
-                    <label className="text-white/70 text-xs font-semibold uppercase">Full Name</label>
-                    <input className="w-full bg-zinc-900 border border-zinc-800 text-white rounded-lg p-4 focus:border-[#67FF04] outline-none" placeholder="Full Name" type="text" />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <label className="text-white/70 text-xs font-semibold uppercase">Email Address</label>
-                    <input className="w-full bg-zinc-900 border border-zinc-800 text-white rounded-lg p-4 focus:border-[#67FF04] outline-none" placeholder="Email Address" type="email" />
-                  </div>
-                  <button 
-                    onClick={() => setIsModalOpen(false)}
-                    className="w-full bg-primary-container text-on-primary-fixed py-4 rounded-lg font-black text-lg hover:shadow-[0_0_20px_rgba(103,255,4,0.4)] transition-all"
-                  >
-                    PROCEED TO QUOTE
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
     </div>
   );
