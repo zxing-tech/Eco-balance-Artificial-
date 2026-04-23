@@ -22,8 +22,35 @@ import {
   ChevronDown
 } from 'lucide-react';
 
+const FORMSUBMIT_EMAIL = 'ecobalancecity@gmail.com';
+
+type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
+
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formStatus, setFormStatus] = useState<FormStatus>('idle');
+
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    setFormStatus('submitting');
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: formData,
+      });
+      if (response.ok) {
+        setFormStatus('success');
+        form.reset();
+      } else {
+        setFormStatus('error');
+      }
+    } catch {
+      setFormStatus('error');
+    }
+  };
 
   return (
     <div className="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
@@ -414,26 +441,36 @@ export default function App() {
           </div>
           
           <div className="max-w-[760px] mx-auto bg-white/5 border border-white/15 rounded-[12px] p-8 md:p-12 mb-20">
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={(e) => e.preventDefault()}>
+            <form
+              action={`https://formsubmit.co/${FORMSUBMIT_EMAIL}`}
+              method="POST"
+              onSubmit={handleFormSubmit}
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
+              <input type="hidden" name="_subject" value="New Quote Request — EcoBalance Artificial" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+
               <div className="flex flex-col gap-2">
                 <label className="text-white/70 text-[0.72rem] font-semibold font-opensans uppercase tracking-[0.08em]">FULL NAME *</label>
-                <input className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all placeholder:text-white/25" placeholder="Enter your full name" required type="text" />
+                <input name="name" className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all placeholder:text-white/25" placeholder="Enter your full name" required type="text" />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-white/70 text-[0.72rem] font-semibold font-opensans uppercase tracking-[0.08em]">EMAIL ADDRESS *</label>
-                <input className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all placeholder:text-white/25" placeholder="email@example.com" required type="email" />
+                <input name="email" className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all placeholder:text-white/25" placeholder="email@example.com" required type="email" />
               </div>
               <div className="md:col-span-2 flex flex-col gap-2">
                 <label className="text-white/70 text-[0.72rem] font-semibold font-opensans uppercase tracking-[0.08em]">PHONE NUMBER *</label>
-                <input className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all placeholder:text-white/25" placeholder="+60 12-345 6789" required type="tel" />
+                <input name="phone" className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all placeholder:text-white/25" placeholder="+60 12-345 6789" required type="tel" />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-white/70 text-[0.72rem] font-semibold font-opensans uppercase tracking-[0.08em]">PROJECT LOCATION / AREA <span className="text-[0.65rem] lowercase opacity-60 font-normal">(Optional)</span></label>
-                <input className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all placeholder:text-white/25" placeholder="e.g. Bangsar, KL" type="text" />
+                <input name="location" className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all placeholder:text-white/25" placeholder="e.g. Bangsar, KL" type="text" />
               </div>
               <div className="flex flex-col gap-2 relative">
                 <label className="text-white/70 text-[0.72rem] font-semibold font-opensans uppercase tracking-[0.08em]">PROJECT TYPE <span className="text-[0.65rem] lowercase opacity-60 font-normal">(Optional)</span></label>
-                <select className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all appearance-none">
+                <select name="project_type" className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all appearance-none">
                   {["Corporate Office", "Retail Commercial", "Healthcare", "Hospitality", "Residential", "Government", "Other"].map(type => (
                     <option key={type} className="bg-[#313131] text-white">{type}</option>
                   ))}
@@ -442,12 +479,12 @@ export default function App() {
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-white/70 text-[0.72rem] font-semibold font-opensans uppercase tracking-[0.08em]">APPROXIMATE WALL SIZE <span className="text-[0.65rem] lowercase opacity-60 font-normal">(Optional)</span></label>
-                <input className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all placeholder:text-white/25" placeholder="Approx. sqm" type="number" />
+                <input name="wall_size_sqm" className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all placeholder:text-white/25" placeholder="Approx. sqm" type="number" />
               </div>
               <div className="flex flex-col gap-2 relative">
                 <label className="text-white/70 text-[0.72rem] font-semibold font-opensans uppercase tracking-[0.08em]">BUDGET RANGE <span className="text-[0.65rem] lowercase opacity-60 font-normal">(Optional)</span></label>
-                <select className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all appearance-none">
-                  <option className="bg-[#313131] text-white" disabled selected value="">Select Budget Range</option>
+                <select name="budget" defaultValue="" className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all appearance-none">
+                  <option className="bg-[#313131] text-white" disabled value="">Select Budget Range</option>
                   {["RM 5,000 - RM 20,000", "RM 20,000 - RM 50,000", "RM 50,000 - RM 70,000", "RM 70,000 - RM 100,000"].map(range => (
                     <option key={range} className="bg-[#313131] text-white">{range}</option>
                   ))}
@@ -456,13 +493,30 @@ export default function App() {
               </div>
               <div className="md:col-span-2 flex flex-col gap-2">
                 <label className="text-white/70 text-[0.72rem] font-semibold font-opensans uppercase tracking-[0.08em]">ADDITIONAL NOTES *</label>
-                <textarea className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all placeholder:text-white/25 h-32" placeholder="Tell us about your space and requirements..." required />
+                <textarea name="notes" className="w-full bg-white/[0.08] border-white/20 text-white rounded-lg p-4 focus:border-[#67FF04] focus:ring-1 focus:ring-[#67FF04] outline-none transition-all placeholder:text-white/25 h-32" placeholder="Tell us about your space and requirements..." required />
               </div>
               <div className="md:col-span-2 pt-4">
                 <div className="w-full h-px bg-white/10 mb-8" />
-                <button type="submit" className="w-full bg-[#67FF04] text-[#313131] py-4 rounded-[4px] font-roboto font-[900] uppercase tracking-wider text-base transition-all hover:shadow-[0_0_20px_rgba(103,255,4,0.4)] shadow-lg">
-                  REQUEST QUOTE VIA EMAIL
-                </button>
+                {formStatus === 'success' ? (
+                  <div className="bg-[#67FF04]/10 border border-[#67FF04]/40 text-[#67FF04] text-center py-6 px-4 rounded-[4px] font-opensans">
+                    Thank you — your request has been sent. We'll reply within 24 hours.
+                  </div>
+                ) : (
+                  <>
+                    <button
+                      type="submit"
+                      disabled={formStatus === 'submitting'}
+                      className="w-full bg-[#67FF04] text-[#313131] py-4 rounded-[4px] font-roboto font-[900] uppercase tracking-wider text-base transition-all hover:shadow-[0_0_20px_rgba(103,255,4,0.4)] shadow-lg disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:shadow-lg"
+                    >
+                      {formStatus === 'submitting' ? 'SENDING…' : 'REQUEST QUOTE VIA EMAIL'}
+                    </button>
+                    {formStatus === 'error' && (
+                      <p className="mt-3 text-center text-red-400 text-sm font-opensans">
+                        Something went wrong. Please try again, or email us directly at {FORMSUBMIT_EMAIL}.
+                      </p>
+                    )}
+                  </>
+                )}
                 <p className="mt-4 text-center text-white/35 text-[0.78rem] font-opensans">
                   Operating Hours: Mon–Fri, 9am–6pm · Includes free site assessment for qualified projects*
                 </p>
