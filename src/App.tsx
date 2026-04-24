@@ -23,7 +23,7 @@ import {
 
 const FORMSUBMIT_EMAIL = 'ecobalancecity@gmail.com';
 
-type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
+type FormStatus = 'idle' | 'submitting' | 'error';
 
 export default function App() {
   const [formStatus, setFormStatus] = useState<FormStatus>('idle');
@@ -44,8 +44,7 @@ export default function App() {
         body: formData,
       });
       if (response.ok) {
-        setFormStatus('success');
-        form.reset();
+        window.location.href = '/thank-you.html';
       } else {
         setFormStatus('error');
       }
@@ -490,25 +489,17 @@ export default function App() {
               </div>
               <div className="md:col-span-2 pt-4">
                 <div className="w-full h-px bg-white/10 mb-8" />
-                {formStatus === 'success' ? (
-                  <div className="bg-[#67FF04]/10 border border-[#67FF04]/40 text-[#67FF04] text-center py-6 px-4 rounded-[4px] font-opensans">
-                    Thank you — your request has been sent. We'll reply within 24 hours.
-                  </div>
-                ) : (
-                  <>
-                    <button
-                      type="submit"
-                      disabled={formStatus === 'submitting'}
-                      className="w-full bg-[#67FF04] text-[#313131] py-4 font-roboto font-[900] uppercase tracking-wider text-base transition-all hover:shadow-[0_0_20px_rgba(103,255,4,0.4)] shadow-lg disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:shadow-lg"
-                    >
-                      {formStatus === 'submitting' ? 'SENDING…' : 'REQUEST QUOTE VIA EMAIL'}
-                    </button>
-                    {formStatus === 'error' && (
-                      <p className="mt-3 text-center text-red-400 text-sm font-opensans">
-                        Something went wrong. Please try again, or email us directly at {FORMSUBMIT_EMAIL}.
-                      </p>
-                    )}
-                  </>
+                <button
+                  type="submit"
+                  disabled={formStatus === 'submitting'}
+                  className="w-full bg-[#67FF04] text-[#313131] py-4 font-roboto font-[900] uppercase tracking-wider text-base transition-all hover:shadow-[0_0_20px_rgba(103,255,4,0.4)] shadow-lg disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:shadow-lg"
+                >
+                  {formStatus === 'submitting' ? 'SENDING…' : 'REQUEST QUOTE VIA EMAIL'}
+                </button>
+                {formStatus === 'error' && (
+                  <p className="mt-3 text-center text-red-400 text-sm font-opensans">
+                    Something went wrong. Please try again, or email us directly at {FORMSUBMIT_EMAIL}.
+                  </p>
                 )}
                 <p className="mt-4 text-center text-white/35 text-[0.78rem] font-opensans">
                   Operating Hours: Mon–Fri, 9am–6pm · Includes free site assessment for qualified projects*
