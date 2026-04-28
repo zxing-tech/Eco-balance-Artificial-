@@ -179,13 +179,17 @@ export default function App() {
           <h2 className="text-3xl font-headline font-black mb-12">Trusted by Malaysia's Industry Leaders</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center">
             {[
-              { name: "Allianz", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Allianz.svg" },
-              { name: "JLN", url: "https://www.jln.gov.my/jln/resources/JLN%20New%20Design%20Layout/Header/LogoJLN%5BFull_Size%5D.png" },
-              { name: "KLIA", url: "https://upload.wikimedia.org/wikipedia/en/b/b2/Malaysia_Airports_Logo.svg" },
-              { name: "Decathlon", url: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Decathlon_-_logo_%28France%2C_2024%29.svg" },
+              { name: "Alliance Bank", url: "/logos/Alliance-Bank-1024x1024.png", imgClass: "max-h-20 max-w-[160px] w-auto h-auto object-contain" },
+              { name: "Amway", url: "/logos/amway.webp", imgClass: "max-h-12 max-w-[140px] w-auto h-auto object-contain" },
+              { name: "Finas", url: "/logos/finas.png", imgClass: "max-h-12 max-w-[140px] w-auto h-auto object-contain" },
+              { name: "Pharmaserv", url: "/logos/pharmaserv.webp", imgClass: "max-h-12 max-w-[140px] w-auto h-auto object-contain" },
+              { name: "Shopee", url: "/logos/shopee.svg", imgClass: "max-h-12 max-w-[140px] w-auto h-auto object-contain" },
+              { name: "Velesto", url: "/logos/velesto.svg", imgClass: "max-h-12 max-w-[140px] w-auto h-auto object-contain" },
+              { name: "PCM Group", url: "/logos/toyota.webp", imgClass: "max-h-12 max-w-[140px] w-auto h-auto object-contain" },
+              { name: "Worq", url: "/logos/worq.png", imgClass: "max-h-12 max-w-[140px] w-auto h-auto object-contain" },
             ].map((client) => (
               <div key={client.name} className="bg-white/50 p-6 rounded-lg grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100 border border-transparent hover:border-outline-variant/20 flex items-center justify-center h-[120px]">
-                <img src={client.url} alt={`${client.name} Logo`} className="max-h-12 max-w-[140px] w-auto h-auto object-contain" />
+                <img src={client.url} alt={`${client.name} Logo`} className={client.imgClass} />
               </div>
             ))}
           </div>
@@ -195,12 +199,12 @@ export default function App() {
       {/* SECTION 4: USE CASES */}
       <section>
         {/* Row 1 */}
-        <div className="flex flex-col md:flex-row min-h-[600px]">
+        <div className="flex flex-col md:flex-row min-h-[420px]">
           <div className="md:w-1/2 relative overflow-hidden group">
-            <img 
-              alt="Office Green Wall" 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-              src="https://borneohalfmarathon.com/wp-content/uploads/2026/04/THE-EXCHANGE-TRX.jpg" 
+            <img
+              alt="Office Green Wall"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              src="/images/Make Your Brand Impossible to Ignore.jpg"
             />
           </div>
           <div className="md:w-1/2 bg-[#f7f7f7] flex flex-col justify-center p-12 md:p-24">
@@ -226,7 +230,7 @@ export default function App() {
             <img 
               alt="Outdoor Cafe Green Wall" 
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-              src="https://borneohalfmarathon.com/wp-content/uploads/2026/04/AMWAY.jpg.jpeg" 
+              src="/images/Create an Unforgettable First Impression.jpg" 
             />
           </div>
           <div className="md:w-1/2 bg-surface flex flex-col justify-center p-12 md:p-24">
@@ -272,27 +276,27 @@ export default function App() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[300px]">
             <div className="md:row-span-2 relative group overflow-hidden rounded-lg">
-              <img src="https://borneohalfmarathon.com/wp-content/uploads/2026/04/soho-suites01.jpg" alt="Gallery 1" className="w-full h-full object-cover" />
+              <img src="/images/Worq Bandar Utama.jpg" alt="Gallery 1" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                <p className="text-white font-bold text-xl">The Exchange TRX - Sky Lobby</p>
+                <p className="text-white font-bold text-xl">Worq Bandar Utama</p>
               </div>
             </div>
             <div className="relative group overflow-hidden rounded-lg">
-              <img src="https://borneohalfmarathon.com/wp-content/uploads/2026/04/moss-wallart-showroom-kv.jpg" alt="Gallery 2" className="w-full h-full object-cover" />
+              <img src="/images/Shopee.jpg" alt="Gallery 2" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                <p className="text-white font-bold">Botanical Detail</p>
+                <p className="text-white font-bold">Shopee</p>
               </div>
             </div>
             <div className="relative group overflow-hidden rounded-lg">
-              <img src="https://borneohalfmarathon.com/wp-content/uploads/2026/04/privateresidence-kl01-1.jpg" alt="Gallery 3" className="w-full h-full object-cover" />
+              <img src="/images/worq integra.jpg" alt="Gallery 3" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                <p className="text-white font-bold">Pavilion Boutique</p>
+                <p className="text-white font-bold">Worq Integra</p>
               </div>
             </div>
             <div className="md:col-span-2 relative group overflow-hidden rounded-lg">
-              <img src="https://borneohalfmarathon.com/wp-content/uploads/2026/04/klia-gate4.jpg" alt="Gallery 4" className="w-full h-full object-cover" />
+              <img src="/images/McDonalds Genting.jpg" alt="Gallery 4" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                <p className="text-white font-bold text-xl">Mont Kiara Residential Terrace</p>
+                <p className="text-white font-bold text-xl">McDonalds Genting</p>
               </div>
             </div>
           </div>
@@ -389,7 +393,7 @@ export default function App() {
           <div className="max-w-2xl mx-auto mb-16">
             {[
               {
-                text: "You have shown professionalism, initiative, and magic green fingers! Everyone who sees the plants feels the need to touch them to see if it's real, as they look so healthy and perfect.",
+                text: "Neoh and Sugania, your team turned our green wall project from drab to fab and it provided a positive impact with our client. Everyone who sees the plants always feel the need to touch them to see if its real, as they look so healthy and perfect. You have shown professionalism, initiative and magic green fingers! We will highly recommend EcoBalance Cityscapes.",
                 author: "Theresa Arthur",
                 role: "Group Account Director, M&C Saatchi KL"
               }
@@ -428,7 +432,7 @@ export default function App() {
             <div className="w-[48px] h-[3px] bg-[#46D4FE] mb-6" />
             <h2 className="text-4xl md:text-5xl font-roboto font-[900] text-white mb-6">Request Your Custom Quotation & Consultation</h2>
             <p className="text-white/60 font-opensans max-w-3xl text-lg">
-              For commercial and institutional spaces · Projects from RM20,000 · Receive your tailored proposal via email within 24 hours.
+              For commercial and institutional spaces · Projects from RM5,000 · Receive your tailored proposal via email within 24 hours.
             </p>
           </div>
           
