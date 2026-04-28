@@ -278,25 +278,25 @@ export default function App() {
             <div className="md:row-span-2 relative group overflow-hidden rounded-lg">
               <img src="/images/Worq Bandar Utama.jpg" alt="Gallery 1" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                <p className="text-white font-bold text-xl">Worq Bandar Utama</p>
+                <p className="text-white font-bold">WORQ Bandar Utama</p>
               </div>
             </div>
             <div className="relative group overflow-hidden rounded-lg">
               <img src="/images/Shopee.jpg" alt="Gallery 2" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                <p className="text-white font-bold">Shopee</p>
+                <p className="text-white font-bold">Shopee HQ</p>
               </div>
             </div>
             <div className="relative group overflow-hidden rounded-lg">
               <img src="/images/worq integra.jpg" alt="Gallery 3" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                <p className="text-white font-bold">Worq Integra</p>
+                <p className="text-white font-bold">WORQ Integra</p>
               </div>
             </div>
             <div className="md:col-span-2 relative group overflow-hidden rounded-lg">
               <img src="/images/McDonalds Genting.jpg" alt="Gallery 4" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                <p className="text-white font-bold text-xl">McDonalds Genting</p>
+                <p className="text-white font-bold text-xl">McDonalds Genting Grand</p>
               </div>
             </div>
           </div>
